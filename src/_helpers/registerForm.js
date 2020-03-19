@@ -1,9 +1,8 @@
-export const Countrys = window.Countrys = require("../../data/countries.json");//.map(x=> `(${x.code}) ${x.name}`);
-export const Airports = window.s = require("../../data/airports.json");//.map(x=> `(${x.code}) ${x.name}`);
+import { Airports, Countries } from './content';
 
-export const FormSchema = {
-    "title": "Register",
-    "description": "Register here to have your information passed on to the foreign office and websites",
+const FormSchema = {
+    //"title": "Register",
+    //"description": "Register here to have your information passed on to the foreign office and websites",
     "type": "object",
     "required": [
       "firstName",
@@ -17,7 +16,7 @@ export const FormSchema = {
       "firstName": {
         "type": "string",
         "title": "First name",
-        "default": "Chuck"
+        //"default": "Chuck"
       },
       "lastName": {
         "type": "string",
@@ -51,9 +50,9 @@ export const FormSchema = {
           "country": {
             "type": "number",
             "title": "Country",
-            "enum": Countrys.map((x,i)=>i), //x.code
-            "enumNames": Countrys.map(x=>x.name),
-            "examples": Countrys.map(x=> `(${x.code}) ${x.name}`),
+            "enum": Countries.map((x,i)=>i), //x.code
+            "enumNames": Countries.map(x=>x.name),
+            "examples": Countries.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
             "type": "number",
@@ -81,9 +80,9 @@ export const FormSchema = {
           "country": {
             "type": "number",
             "title": "Country",
-            "enum": Countrys.map((x,i)=>i), //x.code
-            "enumNames": Countrys.map(x=>x.name),
-            "examples": Countrys.map(x=> `(${x.code}) ${x.name}`),
+            "enum": Countries.map((x,i)=>i), //x.code
+            "enumNames": Countries.map(x=>x.name),
+            "examples": Countries.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
             "type": "number",
@@ -126,4 +125,10 @@ export const FormSchema = {
         }
       },
     }
+}
+
+export {
+  Airports,
+  Countries,
+  FormSchema
 }

@@ -7,18 +7,22 @@
     },
     "license": "MIT",
     "scripts": {
-        "build": "webpack --mode production",
-        "start": "webpack-dev-server --open",
         "dev": "webpack-dev-server --open",
-        "go": "npm run build && npm run deploy",
-        "deploy": "surge ./dist --domain getmehome.surge.sh && surge ./dist --domain https://getmehome.org.uk && surge ./alias --domain getmehome-uk.surge.sh && surge ./alias --domain https://getmehome.uk"
+        "start": "webpack-dev-server --open",
+        "build": "npm run remove:dist && webpack --mode production && npm run copy:static",
+        "copy:static": "cp ./static/* ./dist",
+        "remove:dist": "rm -r ./dist || true",
+        "deploy": "surge ./dist --domain getmehome.surge.sh && surge ./dist --domain https://getmehome.org.uk && surge ./alias --domain getmehome-uk.surge.sh && surge ./alias --domain https://getmehome.uk",
+        "go": "npm run build && npm run deploy"
     },
     "dependencies": {
         "history": "^4.10.1",
         "react": "^16.13.0",
+        "react-bootstrap": "^1.0.0-beta.17",
         "react-dom": "^16.13.0",
         "react-jsonschema-form": "^1.8.1",
         "react-redux": "^7.2.0",
+        "react-router-bootstrap": "^0.25.0",
         "react-router-dom": "^5.1.2",
         "redux": "^4.0.5",
         "redux-logger": "^4.0.0",

@@ -1,9 +1,9 @@
 import React from 'react'
 import useSWR from 'swr'
-import { getContent } from '../_helpers/content';
+import { getContent } from '../_content/getContent';
 
 
-function Content ({ id }) {
+function GoogleDocContent ({ id }) {
     const { data, error } = useSWR(id, getContent)
 
     console.log('<Content', { id, data });
@@ -13,6 +13,5 @@ function Content ({ id }) {
     return <div className="content-from-google-docs" dangerouslySetInnerHTML={{__html:data}}></div>
 }
 
-export { Content }
 
-// https://react-bootstrap.github.io/components/buttons/
+export { GoogleDocContent }
