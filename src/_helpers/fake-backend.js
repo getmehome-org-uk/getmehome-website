@@ -1,3 +1,5 @@
+import config from 'config';
+
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
     
@@ -6,6 +8,9 @@ export function configureFakeBackend() {
     window.fetch = function (url, opts) {
         const { method, headers } = opts;
         const body = opts.body && JSON.parse(opts.body);
+
+
+        console.log("fakeFetch", { method, url, headers, body });
 
         return new Promise((resolve, reject) => {
             // wrap in timeout to simulate server api call
@@ -16,7 +21,8 @@ export function configureFakeBackend() {
                     case url.endsWith('/users/authenticate') && method === 'POST':
                         return authenticate();
                     case url.endsWith('/users/register') && method === 'POST':
-                        return register();
+                        //return register();
+                        return gmhRegister();
                     case url.endsWith('/users') && method === 'GET':
                         return getUsers();
                     case url.match(/\/users\/\d+$/) && method === 'DELETE':
@@ -55,6 +61,32 @@ export function configureFakeBackend() {
                 user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
                 users.push(user);
                 localStorage.setItem('users', JSON.stringify(users));
+
+                return ok();
+            }
+
+            function gmhRegister() {
+                const user = body;
+
+                // debug
+                console.log('gmhRegister', {user, config, opts});
+
+                // no duplicates
+                if (!!user.name && users.find(x => x.name === user.name)) {
+                    return error(`Username  ${user.username} is already taken`);
+                }
+    
+                // assign user id and a few other properties then save
+                user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+                users.push(user);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                // post to remote service
+                return realFetch(config.gmhRegisterApi, opts)
+                    .then(response => resolve(response))
+                    .catch(error => reject(error))
+                ;
+
 
                 return ok();
             }
