@@ -5,10 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../_actions';
 
 import Form from 'react-jsonschema-form';
-import { FormSchema } from './FormSchema';
-
-const log = (type, data) => console.log.bind(console, type, data);
-
+import { FormSchema, Countrys, Airports } from './FormSchema';
 
 function RegisterPage() {
     const [user, setUser] = useState({
@@ -45,16 +42,31 @@ function RegisterPage() {
         }
     }
 
+    const formChanged = () => console.log.bind(console, "form:changed");
+    const formErrors = () => console.log.bind(console, "form:errors");
+    const formSubmitted = ({formData}) => {
+        console.log.bind(console, "form:submit");
+        
+        formData.currently.country = formData.currently.country && Countrys[formData.currently.country] || {};
+        formData.currently.airport = formData.currently.airport && Airports[formData.currently.airport] || {};
+        formData.residence.country = formData.residence.country && Countrys[formData.residence.country] || {};
+        formData.residence.airport = formData.residence.airport && Airports[formData.residence.airport] || {};
 
+        console.log.bind('DATA READY FOR SUBMISSION', formData);
+
+        registerUser(formData);
+    };
+    
+    
 
     return (
         <div className="col-lg-8 offset-lg-2">
             <h2>Register</h2>
 
             <Form schema={FormSchema}
-                onChange={log("changed")}
-                onSubmit={log("submitted")}
-                onError={log("errors")}
+                onChange={formChanged}
+                onSubmit={formSubmitted}
+                onError={formErrors}
             />
 {/*
             <form name="form" onSubmit={handleSubmit}>

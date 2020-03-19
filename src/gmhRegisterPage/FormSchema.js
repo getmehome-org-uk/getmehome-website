@@ -1,5 +1,5 @@
-const Countries = window.Countries = require("../../data/countries.json").map(x=> `(${x.code}) ${x.name}`);
-const Airports = window.Airports = require("../../data/airports.json").map(x=> `(${x.airportCode}) ${x.airportName}`);
+export const Countrys = window.Countrys = require("../../data/countries.json");//.map(x=> `(${x.code}) ${x.name}`);
+export const Airports = window.s = require("../../data/airports.json");//.map(x=> `(${x.code}) ${x.name}`);
 
 export const FormSchema = {
     "title": "Register",
@@ -49,14 +49,18 @@ export const FormSchema = {
         ],
         "properties": {
           "country": {
-            "type": "string",
+            "type": "number",
             "title": "Country",
-            "examples": Countries
+            "enum": Countrys.map((x,i)=>i), //x.code
+            "enumNames": Countrys.map(x=>x.name),
+            "examples": Countrys.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
-            "type": "string",
+            "type": "number",
             "title": "Airport",
-            "examples": Airports
+            "enum": Airports.map((x,i)=>i), //x.code
+            "enumNames": Airports.map(x=>x.name),
+            "examples": Airports.map(x=> `(${x.code}) ${x.name}`),
           },
           "address": {
             "type": "string",
@@ -75,14 +79,18 @@ export const FormSchema = {
         ],
         "properties": {
           "country": {
-            "type": "string",
+            "type": "number",
             "title": "Country",
-            "examples": Countries
+            "enum": Countrys.map((x,i)=>i), //x.code
+            "enumNames": Countrys.map(x=>x.name),
+            "examples": Countrys.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
-            "type": "string",
+            "type": "number",
             "title": "Airport",
-            "examples": Airports
+            "enum": Airports.map((x,i)=>i), //x.code
+            "enumNames": Airports.map(x=>x.name),
+            "examples": Airports.map(x=> `(${x.code}) ${x.name}`),
           },
           "address": {
             "type": "string",
@@ -112,7 +120,8 @@ export const FormSchema = {
         "properties": {
           "notes": {
             "type": "string",
-            "title": "Other information"
+            "title": "Other information",
+            "ui:widget": "textarea"
           }
         }
       },

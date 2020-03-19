@@ -9,6 +9,7 @@
     "scripts": {
         "build": "webpack --mode production",
         "start": "webpack-dev-server --open",
+        "go": "npm run build && npm run deploy",
         "deploy": "surge ./dist --domain getmehome.surge.sh && surge ./dist --domain https://getmehome.org.uk && surge ./alias --domain getmehome-uk.surge.sh && surge ./alias --domain https://getmehome.uk"
     },
     "dependencies": {
