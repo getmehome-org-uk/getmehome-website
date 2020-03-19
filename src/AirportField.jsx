@@ -59,7 +59,7 @@ export const AirportField = (props) => {
         };
         return () => {
             myWorker.terminate()
-            myWorker = new Worker();
+            myWorker = new Worker('worker.js');
         }
     }, [])
     const handleInputChange = (inputValue) => {
