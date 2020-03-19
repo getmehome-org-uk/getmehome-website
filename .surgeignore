@@ -6,3 +6,4 @@ bower_components
 webpack.config.js
 package.json
 package-lock.json
+surge-alias
