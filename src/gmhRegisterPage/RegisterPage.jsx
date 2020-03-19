@@ -7,7 +7,7 @@ import { userActions } from '../_actions';
 import Form from 'react-jsonschema-form';
 import { FormSchema } from './FormSchema';
 
-const log = (type) => console.log.bind(console, type);
+const log = (type, data) => console.log.bind(console, type, data);
 
 
 function RegisterPage() {
