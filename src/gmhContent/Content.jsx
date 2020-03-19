@@ -2,6 +2,7 @@ import React from 'react'
 import useSWR from 'swr'
 import { getContent } from '../_helpers/content';
 
+
 function Content ({ id }) {
     const { data, error } = useSWR(id, getContent)
 
@@ -14,3 +15,4 @@ function Content ({ id }) {
 
 export { Content }
 
+// https://react-bootstrap.github.io/components/buttons/
