@@ -26,7 +26,7 @@ module.exports = {
         // global app config object
         config: JSON.stringify({
             apiUrl: 'http://localhost:4000',
-            gmhRegisterApi: 'http://localhost:8080',//'https://us-central1-getmehome-web.cloudfunctions.net/register'
+            gmhRegisterApi: 'https://us-central1-getmehome-web.cloudfunctions.net/register'
         })
     }
 }
