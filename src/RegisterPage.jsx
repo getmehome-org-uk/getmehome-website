@@ -10,7 +10,8 @@ import { docIds, GoogleDocContent } from './_content';
 
 
 import Form from 'react-jsonschema-form';
-import { FormSchema, Countries, Airports } from './_helpers/registerForm';
+import { FormSchema, Countries, uiSchema } from './_helpers/registerForm';
+import { AirportField } from './AirportField';
 
 function RegisterPage() {
     const [user, setUser] = useState({
@@ -70,6 +71,10 @@ function RegisterPage() {
                         onChange={formChanged}
                         onSubmit={formSubmitted}
                         onError={formErrors}
+                        uiSchema={uiSchema}
+                        fields={{
+                            AirportField
+                        }}
                     >
                         <div className="form-group">
                             <button className="btn btn-primary">

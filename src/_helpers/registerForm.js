@@ -1,4 +1,5 @@
 import { Airports, Countries } from './content';
+import { AirportField } from '../AirportField';
 
 const FormSchema = {
     //"title": "Register",
@@ -55,11 +56,8 @@ const FormSchema = {
             "examples": Countries.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
-            "type": "number",
-            "title": "Airport",
-            "enum": Airports.map((x,i)=>i), //x.code
-            "enumNames": Airports.map(x=>x.name),
-            "examples": Airports.map(x=> `(${x.code}) ${x.name}`),
+            "type": "string",
+            "title": "Airport"
           },
           "address": {
             "type": "string",
@@ -85,11 +83,8 @@ const FormSchema = {
             "examples": Countries.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
-            "type": "number",
-            "title": "Airport",
-            "enum": Airports.map((x,i)=>i), //x.code
-            "enumNames": Airports.map(x=>x.name),
-            "examples": Airports.map(x=> `(${x.code}) ${x.name}`),
+            "type": "string",
+            "title": "Airport"
           },
           "address": {
             "type": "string",
@@ -127,8 +122,22 @@ const FormSchema = {
     }
 }
 
+const uiSchema = {
+  "residence":{
+    airport: {
+      "ui:field": "AirportField"
+    }
+  },
+  "currently":{
+    airport: {
+      "ui:field": "AirportField"
+    }
+  }
+}
+
 export {
   Airports,
   Countries,
-  FormSchema
+  FormSchema,
+  uiSchema
 }
