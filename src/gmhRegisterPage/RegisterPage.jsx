@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { userActions } from '../_actions';
 
+import { docIds } from '../_helpers/content';
+import { Content } from '../gmhContent';
+
+
 import Form from 'react-jsonschema-form';
 import { FormSchema, Countrys, Airports } from './FormSchema';
 
@@ -61,13 +65,23 @@ function RegisterPage() {
 
     return (
         <div className="col-lg-8 offset-lg-2">
-            <h2>Register</h2>
+            {/* <h2>Register</h2> */}
+
+            <Content id={docIds.HOMEPAGE}/>
 
             <Form schema={FormSchema}
                 onChange={formChanged}
                 onSubmit={formSubmitted}
                 onError={formErrors}
-            />
+            >
+                <div className="form-group">
+                    <button className="btn btn-primary">
+                        {registering && <span className="spinner-border spinner-border-sm mr-1"></span>}
+                        Register
+                    </button>
+                    <Link to="/login" className="btn btn-link">Cancel</Link>
+                </div>
+            </Form>
 {/*
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">

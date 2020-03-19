@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { 
+    Router, 
+    Route, 
+    Switch, 
+    Redirect, 
+    //useLocation, 
+    BrowserRouter
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { history } from '../_helpers';
@@ -13,9 +20,19 @@ import { HomePage } from '../gmhHomePage';
 import { AboutPage } from '../gmhAboutPage';
 import { RegisterPage } from '../gmhRegisterPage';
 
+
+//function usePageViews() {
+//    let location = useLocation();
+//    React.useEffect(() => {
+//        window.ga && ga.send(["pageview", location.pathname]);
+//    }, [location]);
+//}
+
 function App() {
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
+
+    //usePageViews();
 
     useEffect(() => {
         history.listen((location, action) => {
@@ -31,7 +48,10 @@ function App() {
                     {alert.message &&
                         <div className={`alert ${alert.type}`}>{alert.message}</div>
                     }
-                    <Router history={history}>
+                    
+                    <BrowserRouter
+                        history={history}
+                    >
                         <Switch>
                             <Route path="/" component={HomePage} exact />
                             <Route path="/about" component={AboutPage} />
@@ -43,7 +63,8 @@ function App() {
 
                             <Redirect from="*" to="/" />
                         </Switch>
-                    </Router>
+                    </BrowserRouter>
+
                 </div>
             </div>
         </div>

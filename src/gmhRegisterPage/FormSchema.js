@@ -109,7 +109,7 @@ export const FormSchema = {
           },
           "airline": {
             "type": "string",
-            "title": "Flight number"
+            "title": "Airline"
           }
         }
       },
@@ -121,7 +121,7 @@ export const FormSchema = {
           "notes": {
             "type": "string",
             "title": "Other information",
-            "ui:widget": "textarea"
+            "format": "textarea"
           }
         }
       },

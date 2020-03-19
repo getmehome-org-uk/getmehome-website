@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { DOCS } from '../_helpers/content';
 
 import { userActions } from '../_actions';
 
@@ -20,6 +21,9 @@ function AboutPage() {
     return (
         <div className="col-lg-8 offset-lg-2">
             <h1>About this website</h1>
+
+            <Content id={DOCS.DOCS_ABOUT}/>
+
             <p>
                 <Link to="/" className="btn btn-link">Home</Link>
                 |

@@ -9,6 +9,7 @@
     "scripts": {
         "build": "webpack --mode production",
         "start": "webpack-dev-server --open",
+        "dev": "webpack-dev-server --open",
         "go": "npm run build && npm run deploy",
         "deploy": "surge ./dist --domain getmehome.surge.sh && surge ./dist --domain https://getmehome.org.uk && surge ./alias --domain getmehome-uk.surge.sh && surge ./alias --domain https://getmehome.uk"
     },
@@ -21,7 +22,8 @@
         "react-router-dom": "^5.1.2",
         "redux": "^4.0.5",
         "redux-logger": "^4.0.0",
-        "redux-thunk": "^2.3.0"
+        "redux-thunk": "^2.3.0",
+        "swr": "^0.1.18"
     },
     "devDependencies": {
         "@babel/core": "^7.4.3",
