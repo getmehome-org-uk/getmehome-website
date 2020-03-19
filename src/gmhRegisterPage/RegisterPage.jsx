@@ -4,6 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { userActions } from '../_actions';
 
+import Form from 'react-jsonschema-form';
+import { FormSchema } from './FormSchema';
+
+const log = (type) => console.log.bind(console, type);
+
+
 function RegisterPage() {
     const [user, setUser] = useState({
         firstName: '',
@@ -25,19 +31,32 @@ function RegisterPage() {
         setUser(user => ({ ...user, [name]: value }));
     }
 
+    function registerUser(user) {
+        dispatch(userActions.register(user));
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
 
         setSubmitted(true);
         if (user.firstName && user.lastName && user.username && user.password) {
             //dispatch(userActions.register(user));
-            dispatch(userActions.register(user));
+            registerUser(user);
         }
     }
+
+
 
     return (
         <div className="col-lg-8 offset-lg-2">
             <h2>Register</h2>
+
+            <Form schema={FormSchema}
+                onChange={log("changed")}
+                onSubmit={log("submitted")}
+                onError={log("errors")}
+            />
+{/*
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>First Name</label>
@@ -75,6 +94,8 @@ function RegisterPage() {
                     <Link to="/login" className="btn btn-link">Cancel</Link>
                 </div>
             </form>
+*/}
+
         </div>
     );
 }
