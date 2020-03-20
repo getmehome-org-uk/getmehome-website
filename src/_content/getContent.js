@@ -27,7 +27,7 @@ const getContent = window.getContent = (content_id)=> new Promise((resolve, reje
         html = html.replace(/<div id="footer"[\s\S]+/gi,'');
         html = html.replace(/https\:\/\/www\.google\.com\/url\?q\=/gi,'');
         html = html.replace(/\&(amp;)?sa=[^\&]*\&(amp;)?ust[^\"]+/gi,'');
-        console.log('getContent', {content_id, html});
+        //console.log('getContent', {content_id, html});
 
         resolve(html);
     })

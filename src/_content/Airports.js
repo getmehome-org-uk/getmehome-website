@@ -1,6 +1,6 @@
 export const Airports = window.Airports = require("./airports.json")
     .filter(
-        airport => !!airport.name
+        airport => !!airport.name && !!airport.code && !airport.name.match(/aerodrome/gi)
     )
     /*
     .sort(
@@ -17,7 +17,7 @@ export const Airports = window.Airports = require("./airports.json")
     */
     .map(
         airport => {
-            airport.label = `(${airport.code}) ${airport.name}`;
+            airport.label = `(${airport.code}) ${airport.city}: ${airport.name}`;
             return airport;
         }
     )
