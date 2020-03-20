@@ -12,7 +12,9 @@
         "build": "npm run remove:dist && webpack --mode production && npm run copy:static",
         "copy:static": "cp ./static/* ./dist",
         "remove:dist": "rm -r ./dist || true",
-        "deploy": "surge ./dist --domain getmehome.surge.sh && surge ./dist --domain https://getmehome.org.uk && surge ./alias --domain getmehome-uk.surge.sh && surge ./alias --domain https://getmehome.uk",
+        "deploy": "npm run deploy:dist && npm run deploy:alias",
+        "deploy:dist": "surge ./dist --domain https://getmehome.org.uk",
+        "deploy:alias": "surge ./alias --domain https://getmehome.uk",
         "go": "npm run build && npm run deploy"
     },
     "dependencies": {

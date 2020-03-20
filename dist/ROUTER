@@ -1,5 +1,6 @@
-301 /register /#reguster
-301 /about /#about
-301 /privacy /#privacy
-301 /links /#links
-301 /contact /#contact
+301 /register /#/register
+301 /about /#/about
+301 /privacy /#/privacy
+301 /links /#/links
+301 /contact /#/contact
+301 /login /#/register
