@@ -1,0 +1,11 @@
+$body-color: #333;
+
+body {
+  color: $body-color;
+}
+
+@import 'register';
+@import 'privacy';
+@import 'about';
+@import 'links';
+@import 'contact';
