@@ -1,9 +1,9 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
-    bundle: './src/index.jsx',
-    worker: './src/workers/airports.worker.js'
-  },
+        bundle: './src/index.jsx',
+        worker: './src/workers/airports.worker.js'
+    },
     mode: 'development',
     resolve: {
         extensions: ['.js', '.jsx']

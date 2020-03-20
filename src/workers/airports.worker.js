@@ -24996,7 +24996,7 @@ const airports = [
       return value.includes(name)
     })
     postMessage({name, airports: results})
-    }
-  };
+  }
+};
   
 console.log("HOLA")
