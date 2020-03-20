@@ -20,6 +20,15 @@ import { RegisterPage } from './RegisterPage';
 import { PrivacyPage } from './PrivacyPage';
 import { LinksPage } from './LinksPage';
 
+const alertFixed = {
+        position: 'fixed',
+        top: '0px',
+        left: '0px',
+        width: '100%',
+        zIndex: '9999',
+        borderRadius: '0px'
+}
+
 function App() {
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
@@ -34,7 +43,7 @@ function App() {
     return (
         <React.Fragment>
             {alert.message &&
-                <div className={`alert ${alert.type}`}>{alert.message}</div>
+                <div className={`alert ${alert.type}`} style={alertFixed}>{alert.message}</div>
             }
 
             <BrowserRouter
