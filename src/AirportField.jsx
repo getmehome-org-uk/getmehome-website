@@ -76,6 +76,9 @@ export const AirportField = (props) => {
           isLoading={isLoading}
           options={results}
           isClearable={true}
+          noOptionsMessage={({inputValue}) => {
+              return !!inputValue ? "No Options" : "Type to search"
+          }}
           filterOption={createFilter(filterConfig)}
           onInputChange={debounce(handleInputChange, 200)}
           onChange={(input) => {
