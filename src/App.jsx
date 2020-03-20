@@ -43,7 +43,9 @@ function App() {
 
                     <Navbar bg="light" expand="lg">
                         <Container>
-                            <Navbar.Brand href="#home">GMH!</Navbar.Brand>
+                            <Navbar.Brand href="/">
+                                <img src="https://res.cloudinary.com/fynewo/image/upload/v1584701291/clients/getmehome-org-uk/getmehome.jpg" height="160"/>
+                            </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="mr-auto">
