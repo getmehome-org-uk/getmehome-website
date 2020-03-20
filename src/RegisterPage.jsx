@@ -10,7 +10,9 @@ import { docIds, GoogleDocContent } from './_content';
 
 
 import Form from 'react-jsonschema-form';
-import { FormSchema, Countries, Airports } from './_helpers/registerForm';
+import { FormSchema, uiSchema } from './_helpers/registerForm';
+import { AirportField } from './AirportField';
+import { CountryField } from './CountryField';
 
 function RegisterPage() {
     const [user, setUser] = useState({
@@ -40,16 +42,16 @@ function RegisterPage() {
     const formChanged = () => console.log.bind(console, "form:changed");
     const formErrors = () => console.log.bind(console, "form:errors");
     const formSubmitted = ({formData}) => {
-        console.log.bind(console, "form:submit");
+        console.log("form:submit");
         
-        formData.currently.country = formData.currently.country && Countries[formData.currently.country] || {};
-        formData.currently.airport = formData.currently.airport && Airports[formData.currently.airport] || {};
-        formData.residence.country = formData.residence.country && Countries[formData.residence.country] || {};
-        formData.residence.airport = formData.residence.airport && Airports[formData.residence.airport] || {};
+        // formData.currently.country = formData.currently.country && Countries[formData.currently.country] || {};
+        // formData.currently.airport = formData.currently.airport && Airports[formData.currently.airport] || {};
+        // formData.residence.country = formData.residence.country && Countries[formData.residence.country] || {};
+        // formData.residence.airport = formData.residence.airport && Airports[formData.residence.airport] || {};
 
-        console.log.bind('DATA READY FOR SUBMISSION', formData);
+        console.log('DATA READY FOR SUBMISSION', formData);
 
-        registerUser(formData);
+        // registerUser(formData);
     };
     
     
@@ -70,6 +72,11 @@ function RegisterPage() {
                         onChange={formChanged}
                         onSubmit={formSubmitted}
                         onError={formErrors}
+                        uiSchema={uiSchema}
+                        fields={{
+                            AirportField,
+                            CountryField
+                        }}
                     >
                         <div className="form-group">
                             <button className="btn btn-primary">

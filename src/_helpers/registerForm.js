@@ -1,5 +1,3 @@
-import { Airports, Countries } from './content';
-
 const FormSchema = {
     //"title": "Register",
     //"description": "Register here to have your information passed on to the foreign office and websites",
@@ -48,18 +46,12 @@ const FormSchema = {
         ],
         "properties": {
           "country": {
-            "type": "number",
+            "type": "string",
             "title": "Country",
-            "enum": Countries.map((x,i)=>i), //x.code
-            "enumNames": Countries.map(x=>x.name),
-            "examples": Countries.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
-            "type": "number",
-            "title": "Airport",
-            "enum": Airports.map((x,i)=>i), //x.code
-            "enumNames": Airports.map(x=>x.name),
-            "examples": Airports.map(x=> `(${x.code}) ${x.name}`),
+            "type": "string",
+            "title": "Airport"
           },
           "address": {
             "type": "string",
@@ -78,18 +70,12 @@ const FormSchema = {
         ],
         "properties": {
           "country": {
-            "type": "number",
+            "type": "string",
             "title": "Country",
-            "enum": Countries.map((x,i)=>i), //x.code
-            "enumNames": Countries.map(x=>x.name),
-            "examples": Countries.map(x=> `(${x.code}) ${x.name}`),
           },
           "airport": {
-            "type": "number",
-            "title": "Airport",
-            "enum": Airports.map((x,i)=>i), //x.code
-            "enumNames": Airports.map(x=>x.name),
-            "examples": Airports.map(x=> `(${x.code}) ${x.name}`),
+            "type": "string",
+            "title": "Airport"
           },
           "address": {
             "type": "string",
@@ -127,8 +113,26 @@ const FormSchema = {
     }
 }
 
+const uiSchema = {
+  "residence":{
+    airport: {
+      "ui:field": "AirportField"
+    },
+    country: {
+      "ui:field": "CountryField"
+    }
+  },
+  "currently":{
+    airport: {
+      "ui:field": "AirportField"
+    },
+    country: {
+      "ui:field": "CountryField"
+    }
+  }
+}
+
 export {
-  Airports,
-  Countries,
-  FormSchema
+  FormSchema,
+  uiSchema
 }
