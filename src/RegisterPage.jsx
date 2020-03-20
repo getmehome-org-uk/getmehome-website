@@ -51,7 +51,7 @@ function RegisterPage() {
 
         console.log('DATA READY FOR SUBMISSION', formData);
 
-        // registerUser(formData);
+         registerUser(formData);
     };
     
     
