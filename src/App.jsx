@@ -59,6 +59,10 @@ function App() {
                                     <LinkContainer to="/privacy">
                                         <Nav.Link href="/privacy">Privacy</Nav.Link>
                                     </LinkContainer>
+                                    <LinkContainer to="/links">
+                                        <Nav.Link href="/links">Links</Nav.Link>
+                                    </LinkContainer>
+                                    {/*
                                     <NavDropdown title="More" id="basic-nav-dropdown">
                                         <LinkContainer to="/links">
                                             <NavDropdown.Item href="/links">Links</NavDropdown.Item>
@@ -68,6 +72,7 @@ function App() {
                                             <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
                                         </LinkContainer>
                                     </NavDropdown>
+                                    */}
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
