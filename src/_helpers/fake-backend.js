@@ -4,13 +4,18 @@ import config from 'config';
 let users = JSON.parse(localStorage.getItem('users')) || [];
     
 export function configureFakeBackend() {
+
+    console.log('configureFakeBackend');
+
     let realFetch = window.fetch;
-    window.fetch = window.fetch || function (url, opts) {
+    window.fetch = function (url, opts) {
+        if(!opts) return console.error("must specific opts to use fetch in this app");
+
         const { method, headers } = opts;
         const body = opts.body && JSON.parse(opts.body);
 
 
-        console.log("fakeFetch", { method, url, headers, body });
+        //console.log("fakeFetch", { method, url, headers, body });
 
         return new Promise((resolve, reject) => {
             // wrap in timeout to simulate server api call

@@ -3,16 +3,10 @@ const airports = require('../_content/airports.json')
     airport => !!airport.name
   )
   .map(
-    airport => {
-        airport.longname = `(${airport.code}) ${airport.name}`;
-        return airport;
-    }
-  )
-  .map(
     (airport,i) => ({
       ...airport,
-      value: airport.code,
-      label: airport.longname,
+      value: i, //airport.code,
+      label: `(${airport.code}) ${airport.name}`
     })
   )
 ;
@@ -27,10 +21,10 @@ onmessage = function(onEvent) {
       //!!hit && console.log('airports filter', {value, name, query, hit});
       return !!hit ? true : false;
     });
-    console.log('airports search result', {query, results});
+    //console.log('airports search result', {query, results});
     postMessage({name: query, airports: results})
   }
 };
   
-console.log("airports search service worker")
+//console.log("airports search service worker")
 

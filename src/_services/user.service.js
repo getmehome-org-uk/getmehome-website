@@ -58,6 +58,8 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
+    //console.log('userService.register', {user, requestOptions});
+
     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
 }
 

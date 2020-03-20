@@ -42,6 +42,8 @@ function register(user) {
     return dispatch => {
         dispatch(request(user));
 
+        //console.log('userAction.register', {user});
+
         userService.register(user)
             .then(
                 user => { 

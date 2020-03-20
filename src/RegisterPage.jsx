@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
+import { Countries, Airports } from './_content';
 
 import { userActions } from './_actions';
 
@@ -30,10 +31,10 @@ function RegisterPage() {
         dispatch(userActions.logout());
     }, []);
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setUser(user => ({ ...user, [name]: value }));
-    }
+    //function handleChange(e) {
+    //    const { name, value } = e.target;
+    //    setUser(user => ({ ...user, [name]: value }));
+    //}
 
     function registerUser(user) {
         dispatch(userActions.register(user));
@@ -44,10 +45,10 @@ function RegisterPage() {
     const formSubmitted = ({formData}) => {
         console.log("form:submit");
         
-        // formData.currently.country = formData.currently.country && Countries[formData.currently.country] || {};
-        // formData.currently.airport = formData.currently.airport && Airports[formData.currently.airport] || {};
-        // formData.residence.country = formData.residence.country && Countries[formData.residence.country] || {};
-        // formData.residence.airport = formData.residence.airport && Airports[formData.residence.airport] || {};
+        formData.currently.country = formData.currently.country && Countries[formData.currently.country] || {};
+        formData.currently.airport = formData.currently.airport && Airports[formData.currently.airport] || {};
+        formData.residence.country = formData.residence.country && Countries[formData.residence.country] || {};
+        formData.residence.airport = formData.residence.airport && Airports[formData.residence.airport] || {};
 
         console.log('DATA READY FOR SUBMISSION', formData);
 

@@ -1,13 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
-import countries from './_content/countries-formatted.json';
+import { Countries } from './_content/Countries';
 
 export const CountryField = (props) => {
     const onChange = (input) => {
+
+        console.log('Country onChange',{input, props});
         if(input && input.value) {
             props.onChange(input.value)
         } else {
-            props.onChange("")
+            props.onChange(null)
         }
     }
     return(
@@ -15,9 +17,9 @@ export const CountryField = (props) => {
         <label>Country<sup>*</sup></label>
         <Select
             isClearable={true}
-          name={props.name}
-          options={countries}
-          onChange={onChange}
+            name={props.name}
+            options={Countries}
+            onChange={onChange}
         />
         </div>
     )

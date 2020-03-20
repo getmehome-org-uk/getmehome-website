@@ -1,6 +1,6 @@
-export const Airports = window.Airports = require("./airports.json")
+export const Countries = window.Countries = require("./countries.json")
     .filter(
-        airport => !!airport.name
+        country => !!country.name
     )
     /*
     .sort(
@@ -16,9 +16,10 @@ export const Airports = window.Airports = require("./airports.json")
     )
     */
     .map(
-        airport => {
-            airport.label = `(${airport.code}) ${airport.name}`;
-            return airport;
-        }
+        (country,i) => ({
+            ...country,
+            value: i,
+            label: `(${country.code}) ${country.name}`
+        })
     )
 ;
