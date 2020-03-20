@@ -9,7 +9,8 @@
     "scripts": {
         "dev": "webpack-dev-server --open",
         "start": "webpack-dev-server --open",
-        "build": "npm run remove:dist && webpack --mode production && npm run copy:static",
+        "build": "npm run remove:dist && webpack --mode production && npm run copy:200 && npm run copy:static",
+        "copy:200": "cp ./dist/index.html ./dist/200.html",
         "copy:static": "cp ./static/* ./dist",
         "remove:dist": "rm -r ./dist || true",
         "deploy": "npm run deploy:dist && npm run deploy:alias",
