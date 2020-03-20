@@ -1,7 +1,7 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
-        bundle: './src/index.jsx',
+        main: './src/index.jsx',
         worker: './src/workers/airports.worker.js'
     },
     mode: 'development',
@@ -26,8 +26,13 @@ module.exports = {
     devServer: {
         historyApiFallback: true
     },
+    // output: {
+    //     filename: '[name].[hash].js'
+    // },
     output: {
-        filename: 'main.[hash].js'
+        filename: (chunkData) => {
+            return chunkData.chunk.name === 'main' ? '[name].[hash].js': '[name].js';
+          }
     },
     externals: {
         // global app config object
