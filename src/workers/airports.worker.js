@@ -11,16 +11,16 @@ const airports = require('../_content/airports.json')
   .map(
     (airport,i) => ({
       ...airport,
-      value: i,
+      value: airport.code,
       label: airport.longname,
     })
   )
 ;
   
 onmessage = function(onEvent) {
-  if ( onEvent.data.inputValue ) {
+  if ( onEvent.data.name ) {
     //console.warn('airports --------------- new search');
-    const query = onEvent.data.inputValue
+    const query = onEvent.data.name
     const regex = new RegExp(query,'gi');
     const results = airports.filter(({value, name}) => {
       const hit = name.match(regex);
@@ -28,8 +28,9 @@ onmessage = function(onEvent) {
       return !!hit ? true : false;
     });
     console.log('airports search result', {query, results});
-    postMessage({query, airports: results})
+    postMessage({name: query, airports: results})
   }
 };
   
 console.log("airports search service worker")
+

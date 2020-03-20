@@ -34,7 +34,7 @@
 // REMOVE the whole entry object from the webpack.config.js
 
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Select, {createFilter} from 'react-select';
 
 const filterConfig = {
@@ -42,33 +42,31 @@ const filterConfig = {
       ignoreAccents: true,
       trim: false,
       matchFrom: 'any',
-};
-let myWorker = new Worker('worker.js');
+    };
 
+const getWorker = () => new Worker('worker.js')
 export const AirportField = (props) => {
+    const myWorker = useMemo(getWorker, [])
     const [results, setResults] = useState([])
     const [isLoading, setLoading] = useState(false)
     const search = useRef(null)
-    
     useEffect(() => {
-        myWorker.onmessage = function({data:{ airports, query }}) {
-            //console.warn('search result from service worker', {airports,query,search});
-            //if(search && search.current === query) {
-                console.warn('ACCEPT SEARCH RESULTS', {airports});
+        myWorker.onmessage = function({data:{ airports, name }}) {
+            if(search.current === name) {
                 setLoading(false)
                 setResults(airports)
-            //}
+            }
         };
+
         return () => {
             myWorker.terminate()
-            myWorker = new Worker('worker.js');
         }
     }, [])
     const handleInputChange = (inputValue) => {
         if(inputValue) {
-            setLoading(true)
-            search.current = inputValue;
-            myWorker.postMessage({inputValue})
+        setLoading(true)
+        search.current = inputValue
+            myWorker.postMessage({name: inputValue})
         }
     }
     return(
@@ -77,13 +75,33 @@ export const AirportField = (props) => {
         <Select
           isLoading={isLoading}
           options={results}
+          isClearable={true}
           filterOption={createFilter(filterConfig)}
-          onInputChange={handleInputChange}
-          onChange={({value}) => {
-            props.onChange(value)
+          onInputChange={debounce(handleInputChange, 200)}
+          onChange={(input) => {
+              if ( input && input.value ) {
+                  console.log("SETTING ", input.value)
+                  props.onChange(input.value)
+              } else {
+                  props.onChange("")
+              }
           }}
         />
         </div>
     )
 }
 
+
+
+
+
+function debounce(func, timeout) {
+    let timer;
+    return (...args) => {
+        const next = () => func(...args);
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(next, timeout > 0 ? timeout : 300);
+    };
+}
