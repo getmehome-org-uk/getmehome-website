@@ -22,6 +22,9 @@ module.exports = {
     devServer: {
         historyApiFallback: true
     },
+    output: {
+        filename: 'main.[hash].js'
+    },
     externals: {
         // global app config object
         config: JSON.stringify({
