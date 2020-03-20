@@ -1,2 +1,6 @@
-301 /login /register
+301 /about /#/about
+301 /links /#/links
+301 /privacy /#/privacy
+301 /register /#/register
+301 /login /#register
 301 /code https://github.com/getmehome-org-uk/getmehome-website
