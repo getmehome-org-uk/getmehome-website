@@ -42,20 +42,22 @@ const filterConfig = {
       ignoreAccents: true,
       trim: false,
       matchFrom: 'any',
-    };
+};
 let myWorker = new Worker('worker.js');
 
 export const AirportField = (props) => {
     const [results, setResults] = useState([])
     const [isLoading, setLoading] = useState(false)
     const search = useRef(null)
-
+    
     useEffect(() => {
-        myWorker.onmessage = function({data:{ airports, name }}) {
-            if(search.current === name) {
+        myWorker.onmessage = function({data:{ airports, query }}) {
+            //console.warn('search result from service worker', {airports,query,search});
+            //if(search && search.current === query) {
+                console.warn('ACCEPT SEARCH RESULTS', {airports});
                 setLoading(false)
                 setResults(airports)
-            }
+            //}
         };
         return () => {
             myWorker.terminate()
@@ -64,9 +66,9 @@ export const AirportField = (props) => {
     }, [])
     const handleInputChange = (inputValue) => {
         if(inputValue) {
-        setLoading(true)
-        search.current = inputValue
-            myWorker.postMessage({name: inputValue})
+            setLoading(true)
+            search.current = inputValue;
+            myWorker.postMessage({inputValue})
         }
     }
     return(
