@@ -37,6 +37,10 @@ function App() {
         history.listen((location, action) => {
             // clear alert on location change
             dispatch(alertActions.clear());
+            
+            console.log('history event', {location, action});
+            !!window.ga && window.ga('set', 'page', location.pathname + location.search);
+            !!window.ga && window.ga('send', 'pageview');
         });
     }, []);
 
