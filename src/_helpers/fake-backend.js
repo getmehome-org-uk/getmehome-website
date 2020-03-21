@@ -5,7 +5,7 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
     
 export function configureFakeBackend() {
 
-    console.log('configureFakeBackend');
+    //console.log('configureFakeBackend');
 
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
