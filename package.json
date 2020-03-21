@@ -19,7 +19,9 @@
         "catch-contact": "cp ./dist/index.html ./dist/contact.html",
         "deploy": "npm run deploy:dist && npm run deploy:alias",
         "deploy:dist": "surge ./dist --domain https://getmehome.org.uk",
-        "deploy:alias": "surge ./alias --domain https://getmehome.uk",
+        "deploy:alias": "npm run deploy:alias1 && npm run deploy:alias2",
+        "deploy:alias1": "surge ./alias1 --domain https://getmehome.uk",
+        "deploy:alias2": "surge ./alias2 --domain https://getmehome.org",
         "go": "npm run build && npm run deploy"
     },
     "dependencies": {
