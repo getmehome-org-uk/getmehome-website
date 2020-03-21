@@ -2,17 +2,16 @@ import React, { useEffect } from 'react';
 import { 
     Route, 
     Switch, 
-    Redirect, 
-    BrowserRouter
+    Redirect,
+    useHistory
 } from 'react-router-dom';
 
-import { Container, Row, Col, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import { LinkContainer } from 'react-router-bootstrap'
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { history } from './_helpers';
 import { alertActions } from './_actions';
 
 import { AboutPage } from './AboutPage';
@@ -32,16 +31,16 @@ const alertFixed = {
 function App() {
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
-
+    const history = useHistory()
     useEffect(() => {
-        history.listen((location, action) => {
-            // clear alert on location change
-            dispatch(alertActions.clear());
-            
-            console.log('history event', {location, action});
-            !!window.ga && window.ga('set', 'page', location.pathname + location.search);
-            !!window.ga && window.ga('send', 'pageview');
-        });
+            history.listen((location, action) => {
+                // clear alert on location change
+                dispatch(alertActions.clear());
+                
+                console.log('_history event', {location, action});
+                !!window.ga && window.ga('set', 'page', location.pathname + location.search);
+                !!window.ga && window.ga('send', 'pageview');
+            });
     }, []);
 
     return (
@@ -49,11 +48,6 @@ function App() {
             {alert.message &&
                 <div className={`alert ${alert.type}`} style={alertFixed}>{alert.message}</div>
             }
-
-            <BrowserRouter
-                history={history}
-            >
-
                     <Navbar bg="light" expand="lg">
                         <Container>
                             <Navbar.Brand href="/">
@@ -104,8 +98,6 @@ function App() {
                         </Switch>
 
                     </Container>
-
-            </BrowserRouter>
 
 
         </React.Fragment>

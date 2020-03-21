@@ -9,11 +9,14 @@ import './styles'
 
 // setup fake backend
 import { configureFakeBackend } from './_helpers';
+import { BrowserRouter } from 'react-router-dom';
 configureFakeBackend();
 
 render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+                <App />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('app')
 );
