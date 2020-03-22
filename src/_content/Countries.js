@@ -18,7 +18,7 @@ export const Countries = window.Countries = require("./countries.json")
     .map(
         (country,i) => ({
             ...country,
-            value: i,
+            value: JSON.stringify(country),
             label: `(${country.code}) ${country.name}`
         })
     )

@@ -46,11 +46,11 @@ const FormSchema = {
         ],
         "properties": {
           "country": {
-            "type": "number",
+            "type": "string",
             "title": "Country",
           },
           "airport": {
-            "type": "number",
+            "type": "string",
             "title": "Airport"
           },
           "address": {
@@ -70,11 +70,11 @@ const FormSchema = {
         ],
         "properties": {
           "country": {
-            "type": "number",
+            "type": "string",
             "title": "Country",
           },
           "airport": {
-            "type": "number",
+            "type": "string",
             "title": "Airport"
           },
           "address": {

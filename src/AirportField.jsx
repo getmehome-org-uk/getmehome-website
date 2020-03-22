@@ -83,7 +83,7 @@ export const AirportField = (props) => {
           onInputChange={debounce(handleInputChange, 200)}
           onChange={(input) => {
               if ( input && input.value ) {
-                  console.log("SETTING ", input.value)
+                  //console.log("SETTING ", input.value)
                   props.onChange(input.value)
               } else {
                   props.onChange("")

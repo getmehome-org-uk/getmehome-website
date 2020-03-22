@@ -34,7 +34,7 @@ var airports = require('../_content/airports.json').filter(function (airport) {
   return !!airport.name && !!airport.code && !airport.name.match(/aerodrome/gi);
 }).map(function (airport, i) {
   return { ...airport,
-    value: i,
+    value: JSON.stringify(airport),
     //airport.code,
     label: "(".concat(airport.code, ") ").concat(airport.city, ": ").concat(airport.name)
   };
