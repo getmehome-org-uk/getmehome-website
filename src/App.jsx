@@ -51,7 +51,7 @@ const App = function(){
                     <Navbar bg="light" expand="lg">
                         <Container>
                             <Navbar.Brand href="/">
-                                <img src="https://res.cloudinary.com/fynewo/image/upload/v1584701291/clients/getmehome-org-uk/getmehome.jpg" height="160"/>
+                                <img src="https://res.cloudinary.com/fynewo/image/upload/f_auto,q_auto/clients/getmehome-org-uk/getmehome.org-06.png" height="160"/>
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
