@@ -93,7 +93,7 @@ const App = function(){
                     </Navbar>
 
 
-                    <Container>
+                    <Container className="main-copy">
 
                         <Switch>
                             <Route path="/about" component={withTracker(AboutPage)} />

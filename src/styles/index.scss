@@ -4,6 +4,9 @@ body {
   color: $body-color;
 }
 
+@import 'general';
+@import 'scrollbars';
+
 @import 'register';
 @import 'privacy';
 @import 'about';
