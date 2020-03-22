@@ -13,6 +13,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { history } from './_helpers';
+import { withTracker } from './_helpers';
 import { alertActions } from './_actions';
 
 import { AboutPage } from './AboutPage';
@@ -29,7 +30,7 @@ const alertFixed = {
         borderRadius: '0px'
 }
 
-function App() {
+const App = function(){
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
 
@@ -45,7 +46,7 @@ function App() {
     }, []);
 
     return (
-        <React.Fragment>
+        <withAnalytics>
             {alert.message &&
                 <div className={`alert ${alert.type}`} style={alertFixed}>{alert.message}</div>
             }
@@ -95,10 +96,10 @@ function App() {
                     <Container>
 
                         <Switch>
-                            <Route path="/about" component={AboutPage} />
-                            <Route path="/register" component={RegisterPage} />
-                            <Route path="/privacy" component={PrivacyPage} />
-                            <Route path="/links" component={LinksPage} />
+                            <Route path="/about" component={withTracker(AboutPage)} />
+                            <Route path="/register" component={withTracker(RegisterPage)} />
+                            <Route path="/privacy" component={withTracker(PrivacyPage)} />
+                            <Route path="/links" component={withTracker(LinksPage)} />
                             
                             <Redirect from="*" to="/register" />
                         </Switch>
@@ -108,7 +109,7 @@ function App() {
             </BrowserRouter>
 
 
-        </React.Fragment>
+        </withAnalytics>
     );
 }
 
