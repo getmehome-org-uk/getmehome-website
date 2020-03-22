@@ -2,18 +2,16 @@ import React, { useEffect } from 'react';
 import { 
     Route, 
     Switch, 
-    Redirect, 
-    BrowserRouter
+    Redirect,
+    useHistory
 } from 'react-router-dom';
 
-import { Container, Row, Col, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import { LinkContainer } from 'react-router-bootstrap'
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { history } from './_helpers';
-import { withTracker } from './_helpers';
 import { alertActions } from './_actions';
 
 import { AboutPage } from './AboutPage';
@@ -33,28 +31,23 @@ const alertFixed = {
 const App = function(){
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
-
+    const history = useHistory();
     useEffect(() => {
-        history.listen((location, action) => {
-            // clear alert on location change
-            dispatch(alertActions.clear());
-            
-            console.log('history event', {location, action});
-            !!window.ga && window.ga('set', 'page', location.pathname + location.search);
-            !!window.ga && window.ga('send', 'pageview');
-        });
+            history.listen((location, action) => {
+                // clear alert on location change
+                dispatch(alertActions.clear());
+                
+                console.log('_history event', {location, action});
+                !!window.ga && window.ga('set', 'page', location.pathname + location.search);
+                !!window.ga && window.ga('send', 'pageview');
+            });
     }, []);
 
     return (
-        <withAnalytics>
+        <React.Fragment>
             {alert.message &&
                 <div className={`alert ${alert.type}`} style={alertFixed}>{alert.message}</div>
             }
-
-            <BrowserRouter
-                history={history}
-            >
-
                     <Navbar bg="light" expand="lg">
                         <Container>
                             <Navbar.Brand href="/">
@@ -96,20 +89,18 @@ const App = function(){
                     <Container className="main-copy">
 
                         <Switch>
-                            <Route path="/about" component={withTracker(AboutPage)} />
-                            <Route path="/register" component={withTracker(RegisterPage)} />
-                            <Route path="/privacy" component={withTracker(PrivacyPage)} />
-                            <Route path="/links" component={withTracker(LinksPage)} />
+                            <Route path="/about" component={AboutPage} />
+                            <Route path="/register" component={RegisterPage} />
+                            <Route path="/privacy" component={PrivacyPage} />
+                            <Route path="/links" component={LinksPage} />
                             
                             <Redirect from="*" to="/register" />
                         </Switch>
 
                     </Container>
 
-            </BrowserRouter>
 
-
-        </withAnalytics>
+        </React.Fragment>
     );
 }
 
