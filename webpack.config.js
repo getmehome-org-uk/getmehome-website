@@ -1,5 +1,6 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-module.exports = {
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack_rules = [];
+const webpackOption = {
     entry: {
         main: './src/index.jsx',
         worker: './src/workers/airports.worker.js'
@@ -12,11 +13,16 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['@babel/preset-react']
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-react'
+                        ]
+                    }
                 }
-
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -63,4 +69,6 @@ module.exports = {
             gmhRegisterApi: 'https://us-central1-getmehome-web.cloudfunctions.net/register'
         })
     }
-}
+};
+
+module.exports = webpackOption;
