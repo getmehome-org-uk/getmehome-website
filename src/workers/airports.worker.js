@@ -33,11 +33,11 @@
 var airports = require('../_content/airports.json').filter(function (airport) {
   return !!airport.name && !!airport.code && !airport.name.match(/aerodrome/gi);
 }).map(function (airport, i) {
-  return { ...airport,
+  return Object.assign({}, airport || {}, {
     value: JSON.stringify(airport),
     //airport.code,
     label: "(".concat(airport.code, ") ").concat(airport.city, ": ").concat(airport.name)
-  };
+  });
 });
 
 onmessage = function onmessage(onEvent) {
