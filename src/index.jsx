@@ -7,8 +7,7 @@ import { App } from './App';
 
 import './styles'
 
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import "@babel/polyfill";
 
 // setup fake backend
 import { configureFakeBackend } from './_helpers';
