@@ -1,7 +1,8 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
-        main: './src/index.jsx',
+        // main: './src/index.jsx',
+        main: ["@babel/polyfill", './src/index.jsx'],
         worker: './src/workers/airports.worker.js'
     },
     mode: 'development',
@@ -10,14 +11,31 @@ module.exports = {
     },
     module: {
         rules: [
+            // {
+            //     test: /\.jsx?$/,
+            //     loader: 'babel-loader',
+            //     query: {
+            //         presets: ['@babel/preset-react']
+            //     }
+
+            // },
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                query: {
-                    presets: ['@babel/preset-react']
+                options: {
+                  presets: [
+                    '@babel/preset-react',
+                    [
+                      '@babel/preset-env',
+                      {
+                        targets: {
+                          browsers: '> 1%, IE 11, not dead',
+                        },
+                      }
+                    ]
+                  ]
                 }
-
-            },
+              },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
