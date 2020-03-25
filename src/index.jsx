@@ -7,6 +7,9 @@ import { App } from './App';
 
 import './styles'
 
+// polyfills
+import 'unfetch/polyfill'
+
 // setup fake backend
 import { configureFakeBackend } from './_helpers';
 import { BrowserRouter } from 'react-router-dom';

@@ -30,7 +30,7 @@ module.exports = {
                       {
                         targets: {
                           browsers: '> 1%, IE 11, not dead',
-                        },
+                        }
                       }
                     ]
                   ]
