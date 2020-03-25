@@ -30,6 +30,8 @@
 
 "use strict";
 
+require('es6-object-assign').polyfill();
+
 var airports = require('../_content/airports.json').filter(function (airport) {
   return !!airport.name && !!airport.code && !airport.name.match(/aerodrome/gi);
 }).map(function (airport, i) {
