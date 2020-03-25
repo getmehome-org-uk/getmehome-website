@@ -12,7 +12,6 @@ import 'whatwg-fetch'
 import "./_helpers/endsWith";
 //import "./_helpers/localStorage";
 import "./_helpers/object-assign";
-import Promise from 'promise-polyfill';
 
 // setup fake backend
 import { configureFakeBackend } from './_helpers';
