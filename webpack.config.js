@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack_rules = [];
 const webpackOption = {
     entry: {
-        main: './src/index.jsx',
+        main: ['@babel/polyfill','./src/index.jsx'],
         worker: './src/workers/airports.worker.js'
     },
     mode: 'development',
@@ -13,7 +13,7 @@ const webpackOption = {
         rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
+                //exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: "babel-loader",
                     options: {

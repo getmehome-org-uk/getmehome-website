@@ -74,7 +74,7 @@ export function configureFakeBackend() {
                 const user = body;
 
                 // debug
-                console.log('gmhRegister', {user, config, opts});
+                //console.log('gmhRegister', {user, config, opts});
 
                 // no duplicates
                 if (!!user.name && users.find(x => x.name === user.name)) {

@@ -11,6 +11,7 @@
         "start": "webpack-dev-server --open",
         "build:clean": "rm -r ./dist || true",
         "build": "npm run build:clean && webpack --mode production && npm run copy:static",
+        "build:win": "del /f /q /s dist && webpack --mode production",
         "copy:static": "cp ./static/* ./dist && npm run catch-about && npm run catch-register && npm run catch-privacy && npm run catch-links && npm run catch-contact",
         "catch-about": "cp ./dist/index.html ./dist/about.html",
         "catch-register": "cp ./dist/index.html ./dist/register.html",
@@ -28,6 +29,7 @@
         "@babel/polyfill": "^7.8.7",
         "es6-object-assign": "^1.1.0",
         "history": "^4.10.1",
+        "promise-polyfill": "8.1.3",
         "react": "^16.13.0",
         "react-bootstrap": "^1.0.0-beta.17",
         "react-dom": "^16.13.0",
@@ -40,7 +42,8 @@
         "redux": "^4.0.5",
         "redux-logger": "^4.0.0",
         "redux-thunk": "^2.3.0",
-        "swr": "^0.1.18"
+        "swr": "^0.1.18",
+        "whatwg-fetch": "^3.0.0"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
