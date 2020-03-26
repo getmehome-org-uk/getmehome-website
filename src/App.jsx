@@ -18,6 +18,7 @@ import { AboutPage } from './AboutPage';
 import { RegisterPage } from './RegisterPage';
 import { PrivacyPage } from './PrivacyPage';
 import { LinksPage } from './LinksPage';
+import { CookiesPage } from './CookiesPage';
 
 const alertFixed = {
         position: 'fixed',
@@ -63,6 +64,9 @@ const App = function(){
                                     <LinkContainer to="/about">
                                         <Nav.Link href="/about">About</Nav.Link>
                                     </LinkContainer>
+                                    <LinkContainer to="/cookies">
+                                        <Nav.Link href="/cookies">Cookies</Nav.Link>
+                                    </LinkContainer>
                                     <LinkContainer to="/privacy">
                                         <Nav.Link href="/privacy">Privacy</Nav.Link>
                                     </LinkContainer>
@@ -91,6 +95,7 @@ const App = function(){
                         <Switch>
                             <Route path="/about" component={AboutPage} />
                             <Route path="/register" component={RegisterPage} />
+                            <Route path="/cookies" component={CookiesPage} />
                             <Route path="/privacy" component={PrivacyPage} />
                             <Route path="/links" component={LinksPage} />
                             
