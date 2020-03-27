@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { store } from './_helpers';
+import { store, history } from './_helpers';
 import { App } from './App';
 
 import './styles'
@@ -20,8 +20,8 @@ configureFakeBackend();
 
 render(
     <Provider store={store}>
-        <BrowserRouter>
-                <App />
+        <BrowserRouter history={history}>
+            <App />
         </BrowserRouter>
     </Provider>,
     document.getElementById('app')

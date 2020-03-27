@@ -84,7 +84,8 @@ export function configureFakeBackend() {
                 // assign user id and a few other properties then save
                 user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
                 users.push(user);
-                localStorage.setItem('users', JSON.stringify(users));
+                //don't store users on localStorage, no need, single submission only
+                //localStorage.setItem('users', JSON.stringify(users));
 
                 // post to remote service
                 return realFetch(config.gmhRegisterApi, opts)

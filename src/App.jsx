@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { alertActions } from './_actions';
 
 import { AboutPage } from './AboutPage';
+import { ConfirmationPage } from './ConfirmationPage';
 import { RegisterPage } from './RegisterPage';
 import { PrivacyPage } from './PrivacyPage';
 import { LinksPage } from './LinksPage';
@@ -95,6 +96,7 @@ const App = function(){
                         <Switch>
                             <Route path="/about" component={AboutPage} />
                             <Route path="/register" component={RegisterPage} />
+                            <Route path="/confirmation" component={ConfirmationPage} />
                             <Route path="/cookies" component={CookiesPage} />
                             <Route path="/privacy" component={PrivacyPage} />
                             <Route path="/links" component={LinksPage} />

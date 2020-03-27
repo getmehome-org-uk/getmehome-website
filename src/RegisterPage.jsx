@@ -17,11 +17,51 @@ import { CountryField } from './CountryField';
 
 function RegisterPage() {
     const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
-        username: '',
-        password: ''
-    });
+        "currently":{
+           "country":{
+              "name":"",
+              "code":"",
+           },
+           "airport":{
+              "name": "",
+              "city": "",
+              "country": "",
+              "code": "",
+              "lat": "",
+              "lng": "",
+              "timezone": "",
+           },
+           "address":""
+        },
+        "residence":{
+           "country":{
+              "name":"",
+              "code":""
+           },
+           "airport":{
+              "name":"",
+              "city":"",
+              "country":"",
+              "code":"",
+              "lat":"",
+              "lng":"",
+              "timezone":""
+           },
+           "address":""
+        },
+        "flight":{
+           "flightno":"",
+           "airline":"",
+        },
+        "other":{
+           "notes":""
+        },
+        "firstName":"",
+        "lastName":"",
+        "phone":"",
+        "email":"",
+        "dob":""
+     });
     const [submitted, setSubmitted] = useState(false);
     const registering = useSelector(state => state.registration.registering);
     const dispatch = useDispatch();
@@ -31,12 +71,8 @@ function RegisterPage() {
         dispatch(userActions.logout());
     }, []);
 
-    //function handleChange(e) {
-    //    const { name, value } = e.target;
-    //    setUser(user => ({ ...user, [name]: value }));
-    //}
-
     function registerUser(user) {
+        setUser(user);
         dispatch(userActions.register(user));
     }
 
@@ -50,7 +86,7 @@ function RegisterPage() {
         formData.residence.country = formData.residence.country && JSON.parse(formData.residence.country) //Countries[formData.residence.country] || {};
         formData.residence.airport = formData.residence.airport && JSON.parse(formData.residence.airport) //Airports[formData.residence.airport] || {};
 
-        console.log('DATA READY FOR SUBMISSION', formData);
+        //console.log('DATA READY FOR SUBMISSION', formData);
 
          registerUser(formData);
     };
