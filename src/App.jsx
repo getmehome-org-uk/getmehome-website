@@ -32,18 +32,27 @@ const alertFixed = {
 
 const App = function(){
     const alert = useSelector(state => state.alert);
+    const registered = useSelector(state => state.registration.registered);
     const dispatch = useDispatch();
     const history = useHistory();
+
     useEffect(() => {
             history.listen((location, action) => {
                 // clear alert on location change
-                dispatch(alertActions.clear());
+                if(!registered) dispatch(alertActions.clear());
                 
                 console.log('_history event', {location, action});
                 !!window.ga && window.ga('set', 'page', location.pathname + location.search);
                 !!window.ga && window.ga('send', 'pageview');
             });
     }, []);
+
+    useEffect(()=> {
+        if(!!registered){
+            history.push('/confirmation');
+            dispatch(alertActions.success('Registration successful'));
+        }
+    }, [ registered ])
 
     return (
         <React.Fragment>
@@ -74,17 +83,6 @@ const App = function(){
                                     <LinkContainer to="/links">
                                         <Nav.Link href="/links">Links</Nav.Link>
                                     </LinkContainer>
-                                    {/*
-                                    <NavDropdown title="More" id="basic-nav-dropdown">
-                                        <LinkContainer to="/links">
-                                            <NavDropdown.Item href="/links">Links</NavDropdown.Item>
-                                        </LinkContainer>
-                                        <NavDropdown.Divider />
-                                        <LinkContainer to="/contact">
-                                            <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
-                                        </LinkContainer>
-                                    </NavDropdown>
-                                    */}
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
@@ -92,7 +90,6 @@ const App = function(){
 
 
                     <Container className="main-copy">
-
                         <Switch>
                             <Route path="/about" component={AboutPage} />
                             <Route path="/register" component={RegisterPage} />
@@ -100,10 +97,8 @@ const App = function(){
                             <Route path="/cookies" component={CookiesPage} />
                             <Route path="/privacy" component={PrivacyPage} />
                             <Route path="/links" component={LinksPage} />
-                            
                             <Redirect from="*" to="/register" />
                         </Switch>
-
                     </Container>
 
 
