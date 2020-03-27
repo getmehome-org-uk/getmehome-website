@@ -35,6 +35,7 @@
 
 
 import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux'
 import Select, {createFilter} from 'react-select';
 
 const filterConfig = {
@@ -49,10 +50,23 @@ export const AirportField = (props) => {
     const myWorker = useMemo(getWorker, [])
     const [results, setResults] = useState([])
     const [isLoading, setLoading] = useState(false)
+
+    const { idSchema:  { $id:elementId } } = props;
+
+
+    const countryData = useSelector(
+        state=>
+            state.registration.user[
+                elementId=="root_currently_airport"?"currently":"residence"
+            ].country
+        )
+    const country = countryData && JSON.parse(countryData).code;
+    console.log('AirportField',{elementId,props,countryData,country});
+
     const search = useRef(null)
     useEffect(() => {
-        myWorker.onmessage = function({data:{ airports, name }}) {
-            if(search.current === name) {
+        myWorker.onmessage = function({data:{ airports, query }}) {
+            if(search.current === query) {
                 setLoading(false)
                 setResults(airports)
             }
@@ -66,7 +80,7 @@ export const AirportField = (props) => {
         if(inputValue) {
         setLoading(true)
         search.current = inputValue
-            myWorker.postMessage({name: inputValue})
+            myWorker.postMessage({query: inputValue, country})
         }
     }
     return(

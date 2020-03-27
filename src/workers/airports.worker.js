@@ -73,21 +73,29 @@ var airports = require('../_content/airports.json').filter(function (airport) {
 });
 
 onmessage = function onmessage(onEvent) {
-  if (onEvent.data.name) {
+  var country = onEvent.data.country || null;
+  var query = onEvent.data.query;
+  if (query || country) {
     //console.warn('airports --------------- new search');
-    var query = onEvent.data.name;
     var regex = new RegExp(query, 'gi');
     var results = airports.filter(function (_ref) {
-      var value = _ref.value,
-          name = _ref.name,
-          label = _ref.label;
-      var hit = label.match(regex); //!!hit && console.log('airports filter', {value, name, query, hit});
+      let hit = false;
+
+      //console.log('COUNTRY?',{country,_ref});
+
+      //if(!country || country==_ref.country){
+              var value = _ref.value,
+                  name = _ref.name,
+                  label = _ref.label;
+                  
+                  hit = label.match(regex); //!!hit && console.log('airports filter', {value, name, query, hit});
+      //}
 
       return !!hit ? true : false;
     }); //console.log('airports search result', {query, results});
 
     postMessage({
-      name: query,
+      query,
       airports: results
     });
   }

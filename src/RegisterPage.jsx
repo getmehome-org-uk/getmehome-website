@@ -16,52 +16,6 @@ import { AirportField } from './AirportField';
 import { CountryField } from './CountryField';
 
 function RegisterPage() {
-    const [user, setUser] = useState({
-        "currently":{
-           "country":{
-              "name":"",
-              "code":"",
-           },
-           "airport":{
-              "name": "",
-              "city": "",
-              "country": "",
-              "code": "",
-              "lat": "",
-              "lng": "",
-              "timezone": "",
-           },
-           "address":""
-        },
-        "residence":{
-           "country":{
-              "name":"",
-              "code":""
-           },
-           "airport":{
-              "name":"",
-              "city":"",
-              "country":"",
-              "code":"",
-              "lat":"",
-              "lng":"",
-              "timezone":""
-           },
-           "address":""
-        },
-        "flight":{
-           "flightno":"",
-           "airline":"",
-        },
-        "other":{
-           "notes":""
-        },
-        "firstName":"",
-        "lastName":"",
-        "phone":"",
-        "email":"",
-        "dob":""
-     });
     const [submitted, setSubmitted] = useState(false);
     const registering = useSelector(state => state.registration.registering);
     const dispatch = useDispatch();
@@ -76,8 +30,11 @@ function RegisterPage() {
         dispatch(userActions.register(user));
     }
 
-    const formChanged = () => console.log.bind(console, "form:changed");
-    const formErrors = () => console.log.bind(console, "form:errors");
+    const formChanged = ({formData}) => {
+        console.log("form:changed", {formData});
+
+        dispatch(userActions.input(formData));
+    }
     const formSubmitted = ({formData}) => {
         console.log("form:submit");
         
@@ -108,7 +65,7 @@ function RegisterPage() {
                     <Form schema={FormSchema}
                         onChange={formChanged}
                         onSubmit={formSubmitted}
-                        onError={formErrors}
+                        //onError={formErrors}
                         uiSchema={uiSchema}
                         fields={{
                             AirportField,

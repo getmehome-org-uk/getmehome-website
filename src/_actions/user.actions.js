@@ -4,12 +4,20 @@ import { alertActions } from './';
 //import { history } from '../_helpers';
 
 export const userActions = {
+    input,
     login,
     logout,
     register,
     getAll,
     delete: _delete
 };
+
+function input(user){
+    return {
+        type: userConstants.REGISTER_INPUT,
+        payload: user
+    }
+}
 
 function login(username, password) {
     return dispatch => {

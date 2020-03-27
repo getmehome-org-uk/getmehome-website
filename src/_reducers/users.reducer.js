@@ -1,6 +1,11 @@
 import { userConstants } from '../_constants';
 
-export function users(state = {}, action) {
+export function users(state = {
+
+ loading: false
+
+
+}, action) {
   switch (action.type) {
     case userConstants.GETALL_REQUEST:
       return {
