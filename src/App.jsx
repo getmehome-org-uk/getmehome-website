@@ -41,7 +41,7 @@ const App = function(){
                 // clear alert on location change
                 if(!registered) dispatch(alertActions.clear());
                 
-                console.log('_history event', {location, action});
+                //console.log('_history event', {location, action});
                 !!window.ga && window.ga('set', 'page', location.pathname + location.search);
                 !!window.ga && window.ga('send', 'pageview');
             });

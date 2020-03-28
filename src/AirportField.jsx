@@ -61,7 +61,7 @@ export const AirportField = (props) => {
             ].country
         )
     const country = countryData && JSON.parse(countryData).code;
-    console.log('AirportField',{elementId,props,countryData,country});
+    //console.log('AirportField',{elementId,props,countryData,country});
 
     const search = useRef(null)
     useEffect(() => {

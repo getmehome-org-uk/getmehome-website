@@ -5,7 +5,7 @@ import { Countries } from './_content/Countries';
 export const CountryField = (props) => {
     const onChange = (input) => {
 
-        console.log('Country onChange',{input, props});
+        //console.log('Country onChange',{input, props});
         if(input && input.value) {
             props.onChange(input.value)
         } else {

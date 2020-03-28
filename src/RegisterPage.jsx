@@ -26,17 +26,17 @@ function RegisterPage() {
     }, []);
 
     function registerUser(user) {
-        setUser(user);
+        //setUser(user);
         dispatch(userActions.register(user));
     }
 
     const formChanged = ({formData}) => {
-        console.log("form:changed", {formData});
+        //console.log("form:changed", {formData});
 
         dispatch(userActions.input(formData));
     }
     const formSubmitted = ({formData}) => {
-        console.log("form:submit");
+        //console.log("form:submit");
         
         formData.currently.country = formData.currently.country && JSON.parse(formData.currently.country) //Countries[formData.currently.country] || {};
         formData.currently.airport = formData.currently.airport && JSON.parse(formData.currently.airport) //Airports[formData.currently.airport] || {};
