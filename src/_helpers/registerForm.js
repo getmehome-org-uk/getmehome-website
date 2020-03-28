@@ -101,7 +101,7 @@ const FormSchema = {
       "other": {
         "type": "object",
         "title": "Other information",
-        "description": "Anything else that might help the aurlines help you",
+        "description": "Anything else that might help official bodies and airlines help you",
         "properties": {
           "notes": {
             "type": "string",
